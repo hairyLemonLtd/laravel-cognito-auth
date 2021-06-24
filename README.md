@@ -5,7 +5,7 @@
 [![StyleCI](https://styleci.io/repos/137779073/shield)](https://styleci.io/repos/137779073)
 
 This package provides a simple way to use AWS Cognito authentication in Laravel. 
-The idea of this package, and some of the code, is based on the package from Blackbits(https://github.com/black-bits/laravel-cognito-auth) which in turn was based off Pod-Point which you can find here: [Pod-Point/laravel-cognito-auth](https://github.com/Pod-Point/laravel-cognito-auth).
+The idea of this package, and some of the code, is based on the package from [Blackbits](https://github.com/black-bits/laravel-cognito-auth) which in turn was based off Pod-Point which you can find here: [Pod-Point/laravel-cognito-auth](https://github.com/Pod-Point/laravel-cognito-auth).
 We decided to use it as a basis for our own package as we wanted to customize it in certain ways to fit our needs. Thank you to both Blackbits and Pod-Point.
 
 Currently we have the following features implemented in our package:
