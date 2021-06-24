@@ -49,12 +49,12 @@
     },
     "autoload": {
         "psr-4": {
-            "hairylemon-ltd\\LaravelCognitoAuth\\": "src"
+            "hairyLemonLtd\\LaravelCognitoAuth\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "hairylemon-ltd\\LaravelCognitoAuth\\Tests\\": "tests"
+            "hairyLemonLtd\\LaravelCognitoAuth\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -68,7 +68,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "hairylemon-ltd\\LaravelCognitoAuth\\CognitoAuthServiceProvider"
+                "hairyLemonLtd\\LaravelCognitoAuth\\CognitoAuthServiceProvider"
             ]
         }
     }
