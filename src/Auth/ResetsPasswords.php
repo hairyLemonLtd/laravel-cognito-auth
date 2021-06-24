@@ -61,7 +61,7 @@ trait ResetsPasswords
      */
     public function showResetForm(Request $request, $token = null)
     {
-        return view('vendor.black-bits.laravel-cognito-auth.reset-password')->with(
+        return view('vendor.hairylemon-ltd.laravel-cognito-auth.reset-password')->with(
             ['email' => $request->email]
         );
     }

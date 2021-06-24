@@ -84,7 +84,7 @@
 
                 var globalAlert = document.getElementById('globalAlert');
                 var message = globalAlert.innerHTML;
-                globalAlert.innerHTML = "{{ trans('black-bits/laravel-cognito-auth::validation.resending') }}";
+                globalAlert.innerHTML = "{{ trans('hairylemon-ltd/laravel-cognito-auth::validation.resending') }}";
 
                 var xhr = new XMLHttpRequest();
                 var csrf = document.getElementsByName("_token")[0].value;
@@ -100,7 +100,7 @@
                     if (xhr.status === 200) {
                         // document.body.innerHTML = xhr.responseText;
                         Array.from(form.elements).forEach(formElement => formElement.disabled = false);
-                        globalAlert.innerHTML = "{{ trans('black-bits/laravel-cognito-auth::validation.resend') }}";
+                        globalAlert.innerHTML = "{{ trans('hairylemon-ltd/laravel-cognito-auth::validation.resend') }}";
                         resendButton.disabled = false;
                     }
                     else if (xhr.status !== 200) {
@@ -109,7 +109,7 @@
                             alert(prased.error)
                         }
                         else if(xhr.status === 422) {
-                            alert("{{ trans('black-bits/laravel-cognito-auth::validation.required') }}")
+                            alert("{{ trans('hairylemon-ltd/laravel-cognito-auth::validation.required') }}")
                         } else {
                             alert('Request failed.  Returned status of ' + xhr.status);
                         }

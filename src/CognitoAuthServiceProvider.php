@@ -17,11 +17,11 @@ class CognitoAuthServiceProvider extends ServiceProvider
         ], 'config');
 
         $this->publishes([
-            __DIR__.'/Resources/views' => resource_path('views/vendor/black-bits/laravel-cognito-auth'),
+            __DIR__.'/Resources/views' => resource_path('views/vendor/hairylemon-ltd/laravel-cognito-auth'),
         ], 'views');
 
         $this->publishes([
-            __DIR__.'/Resources/lang' => resource_path('lang/vendor/black-bits/laravel-cognito-auth'),
+            __DIR__.'/Resources/lang' => resource_path('lang/vendor/hairylemon-ltd/laravel-cognito-auth'),
         ], 'lang');
 
         $this->app->singleton(CognitoClient::class, function (Application $app) {
@@ -61,8 +61,8 @@ class CognitoAuthServiceProvider extends ServiceProvider
         });
 
         $this->loadRoutesFrom(__DIR__.'/routes.php');
-        $this->loadViewsFrom(__DIR__.'/Resources/views', 'black-bits/laravel-cognito-auth');
-        $this->loadTranslationsFrom(__DIR__.'/Resources/lang', 'black-bits/laravel-cognito-auth');
+        $this->loadViewsFrom(__DIR__.'/Resources/views', 'hairylemon-ltd/laravel-cognito-auth');
+        $this->loadTranslationsFrom(__DIR__.'/Resources/lang', 'hairylemon-ltd/laravel-cognito-auth');
     }
 
     public function register()

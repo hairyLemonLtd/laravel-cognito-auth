@@ -1,11 +1,11 @@
 # Laravel Package to easily manage authentication with AWS Cognito
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/black-bits/laravel-cognito-auth.svg?style=flat-square)](https://packagist.org/packages/black-bits/laravel-cognito-auth)
-[![Total Downloads](https://img.shields.io/packagist/dt/black-bits/laravel-cognito-auth.svg?style=flat-square)](https://packagist.org/packages/black-bits/laravel-cognito-auth)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/hairylemon-ltd/laravel-cognito-auth.svg?style=flat-square)](https://packagist.org/packages/hairylemon-ltd/laravel-cognito-auth)
+[![Total Downloads](https://img.shields.io/packagist/dt/hairylemon-ltd/laravel-cognito-auth.svg?style=flat-square)](https://packagist.org/packages/hairylemon-ltd/laravel-cognito-auth)
 [![StyleCI](https://styleci.io/repos/137779073/shield)](https://styleci.io/repos/137779073)
 
 This package provides a simple way to use AWS Cognito authentication in Laravel. 
-The idea of this package, and some of the code, is based on the package from [Blackbits](https://github.com/black-bits/laravel-cognito-auth) which in turn was based off Pod-Point which you can find here: [Pod-Point/laravel-cognito-auth](https://github.com/Pod-Point/laravel-cognito-auth).
+The idea of this package, and some of the code, is based on the package from [Blackbits](https://github.com/hairylemon-ltd/laravel-cognito-auth) which in turn was based off Pod-Point which you can find here: [Pod-Point/laravel-cognito-auth](https://github.com/Pod-Point/laravel-cognito-auth).
 We decided to use it as a basis for our own package as we wanted to customize it in certain ways to fit our needs. Thank you to both Blackbits and Pod-Point.
 
 Currently we have the following features implemented in our package:
@@ -115,7 +115,7 @@ Our package is providing you 5 traits you can just add to your Auth Controllers 
 
 In the simplest way you just go through your Auth Controllers and change namespaces from the traits which are currently implemented from Laravel.
 
-During the publishing process of our package you created a view which you will find under `Resources/views/vendor/black-bits/laravel-cognito-auth`. 
+During the publishing process of our package you created a view which you will find under `Resources/views/vendor/hairylemon-ltd/laravel-cognito-auth`. 
 
 You can change structure to suit your needs. Please be aware of the @extend statement in the blade file to fit into your project structure. 
 At the current state you need to have those 4 form fields defined in here. Those are `token`, `email`, `password`, `password_confirmation`. 
