@@ -1,9 +1,9 @@
 <?php
 
-namespace hairylemon-ltd\LaravelCognitoAuth\Auth;
+namespace hairyLemonLtd\LaravelCognitoAuth\Auth;
 
 use Illuminate\Http\Request;
-use hairylemon-ltd\LaravelCognitoAuth\CognitoClient;
+use hairyLemonLtd\LaravelCognitoAuth\CognitoClient;
 use Illuminate\Foundation\Auth\VerifiesEmails as BaseVerifiesEmails;
 
 trait VerifiesEmails
