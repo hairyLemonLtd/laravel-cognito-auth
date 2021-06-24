@@ -1,11 +1,11 @@
 <?php
 
-namespace BlackBits\LaravelCognitoAuth\Auth;
+namespace hairyLemonLtd\LaravelCognitoAuth\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
-use BlackBits\LaravelCognitoAuth\CognitoClient;
-use BlackBits\LaravelCognitoAuth\Exceptions\InvalidUserFieldException;
+use hairyLemonLtd\LaravelCognitoAuth\CognitoClient;
+use hairyLemonLtd\LaravelCognitoAuth\Exceptions\InvalidUserFieldException;
 use Illuminate\Foundation\Auth\RegistersUsers as BaseSendsRegistersUsers;
 
 trait RegistersUsers

@@ -1,11 +1,11 @@
 <?php
 
-namespace BlackBits\LaravelCognitoAuth;
+namespace hairyLemonLtd\LaravelCognitoAuth;
 
 use Illuminate\Support\Arr;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use BlackBits\LaravelCognitoAuth\Auth\CognitoGuard;
+use hairyLemonLtd\LaravelCognitoAuth\Auth\CognitoGuard;
 use Aws\CognitoIdentityProvider\CognitoIdentityProviderClient;
 
 class CognitoAuthServiceProvider extends ServiceProvider

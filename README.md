@@ -5,11 +5,11 @@
 [![StyleCI](https://styleci.io/repos/137779073/shield)](https://styleci.io/repos/137779073)
 
 This package provides a simple way to use AWS Cognito authentication in Laravel. 
-The idea of this package, and some of the code, is based on the package from Pod-Point which you can find here: [Pod-Point/laravel-cognito-auth](https://github.com/Pod-Point/laravel-cognito-auth).
-We decided to use it as a basis for our own package as we wanted to customize it in certain ways to fit our needs. 
+The idea of this package, and some of the code, is based on the package from Blackbits(https://github.com/black-bits/laravel-cognito-auth) which in turn was based off Pod-Point which you can find here: [Pod-Point/laravel-cognito-auth](https://github.com/Pod-Point/laravel-cognito-auth).
+We decided to use it as a basis for our own package as we wanted to customize it in certain ways to fit our needs. Thank you to both Blackbits and Pod-Point.
 
 Currently we have the following features implemented in our package:
-
+(to check)
 - Registration and Confirmation E-Mail
 - Login
 - Remember Me Cookie
@@ -28,7 +28,7 @@ _This package is currently in development and is not production ready._
 You can install the package via composer.
 
 ```bash
-composer require black-bits/laravel-cognito-auth
+composer require hairyLemonLtd/laravel-cognito-auth
 ```
 
 #### Laravel 5.4 and before
@@ -38,7 +38,7 @@ Using a version prior to Laravel 5.5 you need to manually register the service p
 // config/app.php
 'providers' => [
     ...
-    BlackBits\LaravelCognitoAuth\CognitoAuthServiceProvider::class,
+    hairyLemonLtd\LaravelCognitoAuth\CognitoAuthServiceProvider::class,
     
 ];
 ```
@@ -46,7 +46,7 @@ Using a version prior to Laravel 5.5 you need to manually register the service p
 Next you can publish the config and the view.
 
 ```bash
-php artisan vendor:publish --provider="BlackBits\LaravelCognitoAuth\CognitoAuthServiceProvider"
+php artisan vendor:publish --provider="hairyLemonLtd\LaravelCognitoAuth\CognitoAuthServiceProvider"
 ```
 Last but not least you want to change the auth driver. To do so got to your config\auth.php file and change it 
 to look the following:
@@ -106,11 +106,11 @@ If you are already working on an existing project and want to integrate Cognito 
 
 Our package is providing you 5 traits you can just add to your Auth Controllers to get our package running.
 
-- BlackBits\LaravelCognitoAuth\Auth\AuthenticatesUsers
-- BlackBits\LaravelCognitoAuth\Auth\RegistersUsers
-- BlackBits\LaravelCognitoAuth\Auth\ResetsPasswords
-- BlackBits\LaravelCognitoAuth\Auth\SendsPasswordResetEmails
-- BlackBits\LaravelCognitoAuth\Auth\VerifiesEmails
+- hairyLemonLtd\LaravelCognitoAuth\Auth\AuthenticatesUsers
+- hairyLemonLtd\LaravelCognitoAuth\Auth\RegistersUsers
+- hairyLemonLtd\LaravelCognitoAuth\Auth\ResetsPasswords
+- hairyLemonLtd\LaravelCognitoAuth\Auth\SendsPasswordResetEmails
+- hairyLemonLtd\LaravelCognitoAuth\Auth\VerifiesEmails
 
 
 In the simplest way you just go through your Auth Controllers and change namespaces from the traits which are currently implemented from Laravel.

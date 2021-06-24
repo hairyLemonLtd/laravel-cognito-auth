@@ -1,14 +1,21 @@
 {
-    "name": "black-bits/laravel-cognito-auth",
+    "name": "hairyLemonLtd/laravel-cognito-auth",
     "description": "An auth provider for Laravel for AWS Cognito.",
     "keywords": [
         "BlackBits",
+        "HairyLemon",
         "AWS Cognito",
         "Auth Provider"
     ],
-    "homepage": "https://github.com/black-bits/laravel-cognito-auth",
+    "homepage": "https://github.com/hairyLemonLtd/laravel-cognito-auth",
     "license": "MIT",
     "authors": [
+        {
+            "name": "Carl Bowden",
+            "email": "carl@hairylemon.co.nz",
+            "homepage": "https://hairylemon.co.nz",
+            "role": "Developer"
+        },
         {
             "name": "Oliver Heck",
             "email": "oliver.heck@blackbits.io",
@@ -42,12 +49,12 @@
     },
     "autoload": {
         "psr-4": {
-            "BlackBits\\LaravelCognitoAuth\\": "src"
+            "hairyLemonLtd\\LaravelCognitoAuth\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BlackBits\\LaravelCognitoAuth\\Tests\\": "tests"
+            "hairyLemonLtd\\LaravelCognitoAuth\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -61,7 +68,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "BlackBits\\LaravelCognitoAuth\\CognitoAuthServiceProvider"
+                "hairyLemonLtd\\LaravelCognitoAuth\\CognitoAuthServiceProvider"
             ]
         }
     }
