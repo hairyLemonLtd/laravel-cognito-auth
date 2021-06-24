@@ -1,6 +1,6 @@
 <?php
 
-namespace hairyLemonLtd\LaravelCognitoAuth;
+namespace hairylemon-ltd\LaravelCognitoAuth;
 
 class CognitoUserPropertyAccessor
 {

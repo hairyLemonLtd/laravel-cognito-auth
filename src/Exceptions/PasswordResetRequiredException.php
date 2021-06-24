@@ -1,6 +1,6 @@
 <?php
 
-namespace hairyLemonLtd\LaravelCognitoAuth\Exceptions;
+namespace hairylemon-ltd\LaravelCognitoAuth\Exceptions;
 
 class PasswordResetRequiredException extends \Exception
 {

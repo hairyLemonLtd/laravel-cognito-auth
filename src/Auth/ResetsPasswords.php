@@ -1,10 +1,10 @@
 <?php
 
-namespace hairyLemonLtd\LaravelCognitoAuth\Auth;
+namespace hairylemon-ltd\LaravelCognitoAuth\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
-use hairyLemonLtd\LaravelCognitoAuth\CognitoClient;
+use hairylemon-ltd\LaravelCognitoAuth\CognitoClient;
 use Illuminate\Foundation\Auth\ResetsPasswords as BaseResetsPasswords;
 
 trait ResetsPasswords

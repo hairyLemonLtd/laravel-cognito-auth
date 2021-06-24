@@ -1,6 +1,6 @@
 <?php
 
-namespace hairyLemonLtd\LaravelCognitoAuth;
+namespace hairylemon-ltd\LaravelCognitoAuth;
 
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Password;

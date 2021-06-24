@@ -1,6 +1,6 @@
 <?php
 
-namespace hairyLemonLtd\LaravelCognitoAuth\Auth;
+namespace hairylemon-ltd\LaravelCognitoAuth\Auth;
 
 use Aws\Result;
 use Illuminate\Auth\SessionGuard;
@@ -10,8 +10,8 @@ use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
-use hairyLemonLtd\LaravelCognitoAuth\CognitoClient;
-use hairyLemonLtd\LaravelCognitoAuth\Exceptions\InvalidUserModelException;
+use hairylemon-ltd\LaravelCognitoAuth\CognitoClient;
+use hairylemon-ltd\LaravelCognitoAuth\Exceptions\InvalidUserModelException;
 
 class CognitoGuard extends SessionGuard implements StatefulGuard
 {

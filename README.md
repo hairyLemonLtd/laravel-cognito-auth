@@ -28,7 +28,7 @@ _This package is currently in development and is not production ready._
 You can install the package via composer.
 
 ```bash
-composer require hairyLemonLtd/laravel-cognito-auth
+composer require hairylemon-ltd/laravel-cognito-auth
 ```
 
 #### Laravel 5.4 and before
@@ -38,7 +38,7 @@ Using a version prior to Laravel 5.5 you need to manually register the service p
 // config/app.php
 'providers' => [
     ...
-    hairyLemonLtd\LaravelCognitoAuth\CognitoAuthServiceProvider::class,
+    hairylemon-ltd\LaravelCognitoAuth\CognitoAuthServiceProvider::class,
     
 ];
 ```
@@ -46,7 +46,7 @@ Using a version prior to Laravel 5.5 you need to manually register the service p
 Next you can publish the config and the view.
 
 ```bash
-php artisan vendor:publish --provider="hairyLemonLtd\LaravelCognitoAuth\CognitoAuthServiceProvider"
+php artisan vendor:publish --provider="hairylemon-ltd\LaravelCognitoAuth\CognitoAuthServiceProvider"
 ```
 Last but not least you want to change the auth driver. To do so got to your config\auth.php file and change it 
 to look the following:
@@ -106,11 +106,11 @@ If you are already working on an existing project and want to integrate Cognito 
 
 Our package is providing you 5 traits you can just add to your Auth Controllers to get our package running.
 
-- hairyLemonLtd\LaravelCognitoAuth\Auth\AuthenticatesUsers
-- hairyLemonLtd\LaravelCognitoAuth\Auth\RegistersUsers
-- hairyLemonLtd\LaravelCognitoAuth\Auth\ResetsPasswords
-- hairyLemonLtd\LaravelCognitoAuth\Auth\SendsPasswordResetEmails
-- hairyLemonLtd\LaravelCognitoAuth\Auth\VerifiesEmails
+- hairylemon-ltd\LaravelCognitoAuth\Auth\AuthenticatesUsers
+- hairylemon-ltd\LaravelCognitoAuth\Auth\RegistersUsers
+- hairylemon-ltd\LaravelCognitoAuth\Auth\ResetsPasswords
+- hairylemon-ltd\LaravelCognitoAuth\Auth\SendsPasswordResetEmails
+- hairylemon-ltd\LaravelCognitoAuth\Auth\VerifiesEmails
 
 
 In the simplest way you just go through your Auth Controllers and change namespaces from the traits which are currently implemented from Laravel.

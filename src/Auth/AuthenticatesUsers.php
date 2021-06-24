@@ -1,10 +1,10 @@
 <?php
 
-namespace hairyLemonLtd\LaravelCognitoAuth\Auth;
+namespace hairylemon-ltd\LaravelCognitoAuth\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-use hairyLemonLtd\LaravelCognitoAuth\Exceptions\NoLocalUserException;
+use hairylemon-ltd\LaravelCognitoAuth\Exceptions\NoLocalUserException;
 use Aws\CognitoIdentityProvider\Exception\CognitoIdentityProviderException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers as BaseAuthenticatesUsers;
 
