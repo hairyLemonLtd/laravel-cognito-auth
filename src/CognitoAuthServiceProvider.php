@@ -7,6 +7,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use hairyLemonLtd\LaravelCognitoAuth\Auth\CognitoGuard;
 use Aws\CognitoIdentityProvider\CognitoIdentityProviderClient;
+use Laravel\Fortify\Fortify;
+
+use Illuminate\Contracts\Auth\StatefulGuard;
 
 class CognitoAuthServiceProvider extends ServiceProvider
 {
@@ -43,6 +46,15 @@ class CognitoAuthServiceProvider extends ServiceProvider
                 config('cognito.user_pool_id')
             );
         });
+
+//        Fortify::authenticateUsing(function (Request $request) {
+//            $user = User::where('email', $request->email)->first();
+//
+//            if ($user && Hash::check($request->password, $user->password)) {
+//                return $user;
+//            }
+//        });
+
 
         $this->app['auth']->extend('cognito', function (Application $app, $name, array $config) {
             $guard = new CognitoGuard(

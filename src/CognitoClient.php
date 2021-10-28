@@ -110,6 +110,7 @@ class CognitoClient
                 'SecretHash' => $this->cognitoSecretHash($email),
                 'UserAttributes' => $this->formatAttributes($attributes),
                 'Username' => $email,
+               // 'MessageAction'  => 'SUPPRESS' // TODO check
             ]);
         } catch (CognitoIdentityProviderException $e) {
             if ($e->getAwsErrorCode() === self::USERNAME_EXISTS) {
@@ -119,7 +120,10 @@ class CognitoClient
             throw $e;
         }
 
-        return (bool)$response['UserConfirmed'];
+        info('Cognito register response', $response->toArray());
+
+        //return (bool)$response['UserConfirmed'];
+        return $response['UserSub'];
     }
 
     /**
@@ -437,10 +441,12 @@ class CognitoClient
                 'Username' => $username,
                 'UserPoolId' => $this->poolId,
             ]);
+            info('Cognito getUser response', $user->toArray());
+
         } catch (CognitoIdentityProviderException $e) {
+            error('Cognito getUser error', $e);
             return false;
         }
-
         return $user;
     }
 

@@ -2,6 +2,7 @@
 
 namespace hairyLemonLtd\LaravelCognitoAuth\Auth;
 
+use App\Models\User;
 use Aws\Result;
 use Illuminate\Auth\SessionGuard;
 use Illuminate\Database\Eloquent\Model;
@@ -50,6 +51,8 @@ class CognitoGuard extends SessionGuard implements StatefulGuard
         /** @var Result $response */
         $result = $this->client->authenticate($credentials['email'], $credentials['password']);
 
+        //dd($result);
+
         // Only create the user if single sign on is activated in the project
         if (config('cognito.use_sso') && $result !== false && $user === null) {
             $user = $this->createUser($credentials['email']);
@@ -59,6 +62,8 @@ class CognitoGuard extends SessionGuard implements StatefulGuard
             return true;
         }
 
+        // failures bubule up from authenticate method
+        // so we are auth @ cognito from here
         return false;
     }
 
@@ -105,24 +110,30 @@ class CognitoGuard extends SessionGuard implements StatefulGuard
      */
     public function attempt(array $credentials = [], $remember = false)
     {
+
         $this->fireAttemptEvent($credentials, $remember);
 
-        $this->lastAttempted = $user = $this->provider->retrieveByCredentials($credentials);
+        $cognitoUser = $this->client->getUser($credentials['email']); // uuid or email
+        $uuid = $cognitoUser->get('Username');
+
+        ray('got $cognitoUser' );
+
+        // speical !
+        $user = User::withoutEvents(function () use ($uuid) {
+            return User::where('uuid', $uuid)->first();
+        });
+
+        $user->setCognito($cognitoUser);
+
+        ray('got $user');
+
+        $this->lastAttempted = $user;
 
         // If an implementation of UserInterface was returned, we'll ask the provider
         // to validate the user against the given credentials, and if they are in
         // fact valid we'll log the users into the application and return true.
         if ($this->hasValidCredentials($user, $credentials)) {
-
-            // Hook up for Single Sign On
-            // If user is not registered yet the user above will be null but hasValidCredentials
-            // will be true. After creating the user we need to retrieve it again from the database.
-            if ($user === null) {
-                $this->lastAttempted = $user = $this->provider->retrieveByCredentials($credentials);
-            }
-
             $this->login($user, $remember);
-
             return true;
         }
 
