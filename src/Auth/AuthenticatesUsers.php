@@ -97,8 +97,8 @@ trait AuthenticatesUsers
 
         $this->attributes['email'] = $this->cognito_attributes['email'];
 
-        // match session TTL
-        Cache::put('cognito_attributes_'.$uuid, $this->cognito_attributes, (session()->getSessionConfig()['lifetime'] * 60));
+        // match session TTL + 5 min
+        Cache::put('cognito_attributes_'.$uuid, $this->cognito_attributes, ( (session()->getSessionConfig()['lifetime'] * 60) + 300) );
 
         $this->cognito_done = true;
 
@@ -106,14 +106,17 @@ trait AuthenticatesUsers
     // called on retrieved event
     private function setupCognito(): void
     {
-        if ($this->cognito_done) {
+        if ($this->cognito_done ||  is_array($this->cognito_attributes) ) {
             return;
         }
 
         $this->cognito_attributes = Cache::get('cognito_attributes_'.$this->attributes['uuid']);
+
+        if(! $this->cognito_attributes ){
+            abort(401);
+        }
+
         $this->attributes['email'] = $this->cognito_attributes['email'];
         $this->cognito_done = true;
     }
-
-
 }
