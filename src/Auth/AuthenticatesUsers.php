@@ -106,7 +106,7 @@ trait AuthenticatesUsers
     // called on retrieved event
     private function setupCognito(): void
     {
-        if ($this->cognito_done ||  is_array($this->cognito_attributes) ) {
+        if ($this->cognito_done ||  ! empty($this->cognito_attributes) ) {
             return;
         }
 
