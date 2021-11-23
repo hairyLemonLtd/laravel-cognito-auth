@@ -98,11 +98,24 @@ trait AuthenticatesUsers
         $this->attributes['email'] = $this->cognito_attributes['email'];
 
         // match session TTL + 5 min
-        Cache::put('cognito_attributes_'.$uuid, $this->cognito_attributes, ( (session()->getSessionConfig()['lifetime'] * 60) + 300) );
+        //Cache::put('cognito_attributes_'.$uuid, $this->cognito_attributes, ( (session()->getSessionConfig()['lifetime'] * 60) + 300) );
+        session()->put('cognito_attributes_'.$uuid, $this->cognito_attributes);
+
 
         $this->cognito_done = true;
 
     }
+
+    public function hasCognitoData(){
+        return ! empty($this->cognito_attributes);
+    }
+
+    public function setCognitoData(array $data)
+    {
+        $this->cognito_attributes = $data;
+        $this->attributes['email'] = $this->cognito_attributes['email'];
+    }
+
     // called on retrieved event
     private function setupCognito(): void
     {
@@ -110,13 +123,14 @@ trait AuthenticatesUsers
             return;
         }
 
-        $this->cognito_attributes = Cache::get('cognito_attributes_'.$this->attributes['uuid']);
+        //$this->cognito_attributes = Cache::get('cognito_attributes_'.$this->attributes['uuid']);
+        $this->cognito_attributes = session()->get('cognito_attributes_'.$this->attributes['uuid']);
 
-        if(! $this->cognito_attributes ){
-            abort(401);
-        }
 
         $this->attributes['email'] = $this->cognito_attributes['email'];
         $this->cognito_done = true;
     }
+
+
+
 }
