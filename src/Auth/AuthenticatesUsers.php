@@ -117,7 +117,7 @@ trait AuthenticatesUsers
     }
 
     // called on retrieved event
-    private function setupCognito(): void
+    public function setupCognito(): void
     {
         if ($this->cognito_done ||  ! empty($this->cognito_attributes) ) {
             return;
@@ -131,6 +131,31 @@ trait AuthenticatesUsers
         $this->cognito_done = true;
     }
 
+    public function checkCognitoExists(string $name): bool
+    {
+        return ($this->cognito_attributes[$name] ?? false) ? true : false;
+    }
+
+    public function getCognitoData(): void
+    {
+        // bail if we are empty
+        if(! ($this->attributes['uuid'] ?? false) ){
+            return;
+        }
 
 
+        if(! empty($this->cognito_attributes) && ($this->cognito_attributes['email'] ?? false)){
+            return;
+        }
+
+        if(session()->has('cognito_attributes_'.$this->attributes['uuid']) ){
+            $this->setupCognito();
+            return;
+        }
+
+
+        $cognitoClient = app()->make(CognitoClient::class);
+        $cognitoUser = $cognitoClient->getUser($this->attributes['uuid']); // uuid or email
+        $this->setCognito($cognitoUser);
+    }
 }
