@@ -436,17 +436,23 @@ class CognitoClient
      */
     public function getUser($username)
     {
-        try {
-            $user = $this->client->AdminGetUser([
-                'Username' => $username,
-                'UserPoolId' => $this->poolId,
-            ]);
-            info('Cognito getUser response', $user->toArray());
+        $user = session()->get('cognito_user_'.$username);
+        if(!$user){
+            try {
+                $user = $this->client->AdminGetUser([
+                    'Username'   => $username,
+                    'UserPoolId' => $this->poolId,
+                ]);
+                info('Cognito getUser response '.$username, $user->toArray());
+                session()->put('cognito_user_'.$username, $user);
 
-        } catch (CognitoIdentityProviderException $e) {
-            error('Cognito getUser error', $e);
-            return false;
+            } catch (CognitoIdentityProviderException $e) {
+                error('Cognito getUser error', $e);
+
+                return false;
+            }
         }
+
         return $user;
     }
 
