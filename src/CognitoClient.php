@@ -447,7 +447,8 @@ class CognitoClient
                 session()->put('cognito_user_'.$username, $user);
 
             } catch (CognitoIdentityProviderException $e) {
-                error('Cognito getUser error', $e);
+                //error('Cognito getUser error', $e);
+                abort(401);
 
                 return false;
             }
