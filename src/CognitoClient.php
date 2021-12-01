@@ -450,7 +450,7 @@ class CognitoClient
 
                 \Log::critical($username . ' CognitoIdentityProviderException', ['message' => $e->getMessage()]);
 
-                abort(400);
+                //abort(400);
 
                 return false;
             }
