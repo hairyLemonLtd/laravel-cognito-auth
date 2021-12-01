@@ -452,7 +452,7 @@ class CognitoClient
 
                 //abort(400);
 
-                return false;
+                return null;
             }
         }
 
