@@ -116,16 +116,17 @@ class CognitoGuard extends SessionGuard implements StatefulGuard
         $cognitoUser = $this->client->getUser($credentials['email']); // uuid or email
         $uuid = $cognitoUser->get('Username');
 
-        ray('got $cognitoUser' );
-
-        // speical !
+        // special !
         $user = User::withoutEvents(function () use ($uuid) {
             return User::where('uuid', $uuid)->first();
         });
 
+        if(!$user){
+            return false;
+        }
+
         $user->setCognito($cognitoUser);
 
-        ray('got $user');
 
         $this->lastAttempted = $user;
 

@@ -82,7 +82,7 @@ trait AuthenticatesUsers
 
     public function setCognito($cognito_user): void
     {
-        if ($cognito_user === NUll || $this->cognito_done) {
+        if ($cognito_user === null || $this->cognito_done) {
             return;
         }
 
