@@ -49,13 +49,17 @@ class CognitoGuard extends SessionGuard implements StatefulGuard
     protected function hasValidCredentials($user, $credentials)
     {
         /** @var Result $response */
+
+        info(__METHOD__ . ' Client', (array) $this->client);
+
         $result = $this->client->authenticate($credentials['email'], $credentials['password']);
 
         //dd($result);
+        info(__METHOD__.' cognito result ', ['cognito result:::' => $result]);
 
         // Only create the user if single sign on is activated in the project
         if (config('cognito.use_sso') && $result !== false && $user === null) {
-            $user = $this->createUser($credentials['email']);
+            //$user = $this->createUser($credentials['email']); no
         }
 
         if ($result && $user instanceof Authenticatable) {
