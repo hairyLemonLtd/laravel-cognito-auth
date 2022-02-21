@@ -96,7 +96,7 @@ class CognitoAuthServiceProvider extends ServiceProvider
 //        });
 
 
-        $this->app['auth']->extend('cognito', function (Application $app, $name, array $config) {
+        $this->app['auth']->extend('cognitoAU', function (Application $app, $name, array $config) {
             $guard = new CognitoGuard(
                 $name,
                 $client = $app->make(CognitoClient::class),
@@ -112,7 +112,7 @@ class CognitoAuthServiceProvider extends ServiceProvider
             return $guard;
         });
 
-        $this->app['auth']->extend('cognitoeu', function (Application $app, $name, array $config) {
+        $this->app['auth']->extend('cognitoEU', function (Application $app, $name, array $config) {
             $guard = new CognitoGuard(
                 $name,
                 $client = $app->make(CognitoClient::class),
