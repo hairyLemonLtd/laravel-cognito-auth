@@ -50,7 +50,7 @@ class CognitoAuthServiceProvider extends ServiceProvider
         $this->app->singleton(CognitoClient::class.'AU', function (Application $app) {
             $config = [
                 'region' => config('cognito.sydney.region'),
-                'version' => config('cognito.sydney.version'),
+                'version' => config('cognito.version'),
             ];
 
             $credentials = config('cognito.credentials');
@@ -70,7 +70,7 @@ class CognitoAuthServiceProvider extends ServiceProvider
         $this->app->singleton(CognitoClient::class.'EU', function (Application $app) {
             $config = [
                 'region' => config('cognito.frankfurt.region'),
-                'version' => config('cognito.frankfurt.version'),
+                'version' => config('cognito.version'),
             ];
 
             $credentials = config('cognito.credentials');
