@@ -27,7 +27,7 @@ class CognitoAuthServiceProvider extends ServiceProvider
             __DIR__.'/Resources/lang' => resource_path('lang/vendor/hairylemon-ltd/laravel-cognito-auth'),
         ], 'lang');
 
-        $this->app->singleton(CognitoClient::class, function (Application $app) {
+        /*$this->app->singleton(CognitoClient::class, function (Application $app) {
             $config = [
                 'region'      => config('cognito.region'),
                 'version'     => config('cognito.version'),
@@ -44,6 +44,46 @@ class CognitoAuthServiceProvider extends ServiceProvider
                 config('cognito.app_client_id'),
                 config('cognito.app_client_secret'),
                 config('cognito.user_pool_id')
+            );
+        });*/
+
+        $this->app->singleton(CognitoClient::class.'AU', function (Application $app) {
+            $config = [
+                'region' => config('cognito.sydney.region'),
+                'version' => config('cognito.sydney.version'),
+            ];
+
+            $credentials = config('cognito.credentials');
+
+            if (! empty($credentials['key']) && ! empty($credentials['secret'])) {
+                $config['credentials'] = Arr::only($credentials, ['key', 'secret', 'token']);
+            }
+
+            return new CognitoClient(
+                new CognitoIdentityProviderClient($config),
+                config('cognito.sydney.app_client_id'),
+                config('cognito.sydney.app_client_secret'),
+                config('cognito.sydney.user_pool_id')
+            );
+        });
+
+        $this->app->singleton(CognitoClient::class.'EU', function (Application $app) {
+            $config = [
+                'region' => config('cognito.frankfurt.region'),
+                'version' => config('cognito.frankfurt.version'),
+            ];
+
+            $credentials = config('cognito.credentials');
+
+            if (! empty($credentials['key']) && ! empty($credentials['secret'])) {
+                $config['credentials'] = Arr::only($credentials, ['key', 'secret', 'token']);
+            }
+
+            return new CognitoClient(
+                new CognitoIdentityProviderClient($config),
+                config('cognito.frankfurt.app_client_id'),
+                config('cognito.frankfurt.app_client_secret'),
+                config('cognito.frankfurt.user_pool_id')
             );
         });
 
@@ -71,6 +111,27 @@ class CognitoAuthServiceProvider extends ServiceProvider
 
             return $guard;
         });
+
+        $this->app['auth']->extend('cognitoeu', function (Application $app, $name, array $config) {
+            $guard = new CognitoGuard(
+                $name,
+                $client = $app->make(CognitoClient::class),
+                $app['auth']->createUserProvider($config['provider']),
+                $app['session.store'],
+                $app['request']
+            );
+
+            $guard->setCookieJar($this->app['cookie']);
+            $guard->setDispatcher($this->app['events']);
+            $guard->setRequest($this->app->refresh('request', $guard, 'setRequest'));
+
+            return $guard;
+        });
+
+
+
+
+
 
         $this->loadRoutesFrom(__DIR__.'/routes.php');
         $this->loadViewsFrom(__DIR__.'/Resources/views', 'hairylemon-ltd/laravel-cognito-auth');
