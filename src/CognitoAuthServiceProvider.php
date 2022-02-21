@@ -99,7 +99,7 @@ class CognitoAuthServiceProvider extends ServiceProvider
         $this->app['auth']->extend('cognitoAU', function (Application $app, $name, array $config) {
             $guard = new CognitoGuard(
                 $name,
-                $client = $app->make(CognitoClient::class),
+                $client = $app->make(CognitoClient::class.'AU'),
                 $app['auth']->createUserProvider($config['provider']),
                 $app['session.store'],
                 $app['request']
@@ -115,7 +115,7 @@ class CognitoAuthServiceProvider extends ServiceProvider
         $this->app['auth']->extend('cognitoEU', function (Application $app, $name, array $config) {
             $guard = new CognitoGuard(
                 $name,
-                $client = $app->make(CognitoClient::class),
+                $client = $app->make(CognitoClient::class.'EU'),
                 $app['auth']->createUserProvider($config['provider']),
                 $app['session.store'],
                 $app['request']
