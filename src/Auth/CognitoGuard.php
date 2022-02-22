@@ -37,6 +37,9 @@ class CognitoGuard extends SessionGuard implements StatefulGuard
         ?Request $request = null
     ) {
         $this->client = $client;
+
+        //info(__METHOD__ .' client: '.$client->poolId);
+
         parent::__construct($name, $provider, $session, $request);
     }
 
@@ -50,12 +53,13 @@ class CognitoGuard extends SessionGuard implements StatefulGuard
     {
         /** @var Result $response */
 
-        info(__METHOD__ . ' Client', (array) $this->client);
+        //info(__METHOD__ . ' Client', (array) $this->client);
+        $client = \App\Models\User::getCognitoClient($credentials['email']);
 
-        $result = $this->client->authenticate($credentials['email'], $credentials['password']);
+        $result = $client->authenticate($credentials['email'], $credentials['password']);
 
         //dd($result);
-        info(__METHOD__.' cognito result ', ['cognito result:::' => $result]);
+        //info(__METHOD__.' cognito result ', ['cognito result:::' => $result]);
 
         // Only create the user if single sign on is activated in the project
         if (config('cognito.use_sso') && $result !== false && $user === null) {
@@ -117,7 +121,11 @@ class CognitoGuard extends SessionGuard implements StatefulGuard
 
         $this->fireAttemptEvent($credentials, $remember);
 
-        if($cognitoUser = $this->client->getUser($credentials['email'])){
+        //logger()->error('start attempt w ' .$this->client->poolId);
+
+        $client = \App\Models\User::getCognitoClient($credentials['email']);
+
+        if($cognitoUser = $client->getUser($credentials['email'])){
             $uuid = $cognitoUser->get('Username');
 
             // special !

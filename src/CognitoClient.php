@@ -36,7 +36,7 @@ class CognitoClient
     /**
      * @var string
      */
-    protected $poolId;
+    public $poolId;
 
     /**
      * CognitoClient constructor.
@@ -56,6 +56,9 @@ class CognitoClient
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
         $this->poolId = $poolId;
+
+        //info('CURRENT POOL client__construct '.$this->poolId);
+        //info(__METHOD__.' pool '.$poolId);
     }
 
     /**
@@ -436,7 +439,24 @@ class CognitoClient
      */
     public function getUser($username)
     {
-        $user = session()->get('cognito_user_'.$username);
+
+
+
+        //info('CURRENT GUARD getUser' .$this->poolId, (array) \Auth::guard());
+        //if($this->poolId == 'ap-southeast-2_TUQTGugNT'){}
+
+        //dd($this->poolId);
+        //logger()->error('getUser: ' .$username . ' pool:'. $this->poolId);
+
+        /* if($db_user->region === 'EU'){
+            $client = app()->make(CognitoClient::class.'EU');
+        }
+        else {
+            $client = app()->make(CognitoClient::class.'AU');
+        }*/
+
+
+        $user = session()->get('cognito_user_'.Str::slug($username));
         if(!$user){
             try {
                 $user = $this->client->AdminGetUser([
@@ -444,7 +464,7 @@ class CognitoClient
                     'UserPoolId' => $this->poolId,
                 ]);
                 info('Cognito getUser response '.$username, $user->toArray());
-                session()->put('cognito_user_'.$username, $user);
+                session()->put('cognito_user_'.Str::slug($username), $user);
 
             } catch (CognitoIdentityProviderException $e) {
 
