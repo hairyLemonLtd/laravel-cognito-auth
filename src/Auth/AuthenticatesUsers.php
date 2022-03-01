@@ -154,8 +154,7 @@ trait AuthenticatesUsers
             return;
         }
 
-
-        $cognitoClient = app()->make(CognitoClient::class);
+        $cognitoClient = app()->make(CognitoClient::class.$this->getRegion());
         $cognitoUser = $cognitoClient->getUser($this->attributes['uuid']); // uuid or email
         $this->setCognito($cognitoUser);
     }
